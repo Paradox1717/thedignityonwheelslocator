@@ -5,11 +5,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static AssetManager assets;
@@ -35,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         home.setButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(view.getId() == R.id.schedule_btn)
+                if (view.getId() == R.id.schedule_btn)
                     navBar.setSelectedItemId(R.id.nav_schedule);
             }
         });
@@ -55,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
-
                 switch (item.getItemId()) {
                     case R.id.nav_home:
                         selectedFragment = home;
@@ -76,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        navBar.setSelectedItemId(R.id.nav_home);
+    }
 
+    @Override
+    public void onBackPressed() {
         navBar.setSelectedItemId(R.id.nav_home);
     }
 }
